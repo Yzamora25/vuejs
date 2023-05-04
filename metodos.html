@@ -8,6 +8,17 @@
 </head>
 <body>
   <main id='app'>
+    <h1>Calculadora</h1>
+    <input type="number" v-model="v1" placeholder="Valor 1">
+    <input type="number" v-model="v2" placeholder="Valor 2" @keyup="operacion"> <br>
+    <input type="radio" v-model="ope" value="suma">Suma
+    <input type="radio" v-model="ope" value="resta">Resta
+    <input type="radio" v-model="ope" value="multi">Multiplicacion
+    <input type="radio" v-model="ope" value="div">Division <br>
+    <br>
+    <label for="">{{res}}</label>
+    <button v-on:click="operacion">Calcular</button>
+
 
   </main>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
@@ -15,7 +26,40 @@
     var app = new Vue({
       el: '#app',
       data: {
-        datos: '',
+        v1:0,
+        v2:0,
+        res:0,
+        ope:'suma'
+      },
+      methods: {
+        operacion: function(){
+          // usando if else
+          // if(this.ope == 'suma'){
+          //   this.res = parseInt(this.v1) + parseInt(this.v2);
+          // }else if(this.ope == 'resta'){
+          //   this.res = parseInt(this.v1) - parseInt(this.v2);
+          // }else if(this.ope == 'multi'){
+          //   this.res = parseInt(this.v1) * parseInt(this.v2);
+          // }else if(this.ope == 'div'){
+          //   this.res = parseInt(this.v1) / parseInt(this.v2);
+          // }
+
+          // usando switch
+          switch(this.ope){
+            case 'suma':
+              this.res = parseInt(this.v1) + parseInt(this.v2);
+              break;
+            case 'resta':
+              this.res = parseInt(this.v1) - parseInt(this.v2);
+              break;
+            case 'multi':
+              this.res = parseInt(this.v1) * parseInt(this.v2);
+              break;
+            case 'div':
+              this.res = parseInt(this.v1) / parseInt(this.v2);
+              break;
+          }
+        }
       },
     })
   </script>
