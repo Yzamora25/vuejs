@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hola Mundo</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  
+  
+
+</head>
+<body>
+  <div id="app">
+    <h1>{{ message }}</h1>
+    <input type="text" v-model="message">
+  </div>
+  <hr>
+  <br>
+  <div id="app-2">
+    <span v-bind:title="message">
+      Pase el mouse aquí por unos segundos para ver el mensaje con binding
+    </span>
+  </div>
+  <hr>
+  <br>
+  <div id="app-3">
+    <p>La suma de {{ firstNumber }} + {{ secondNumber }} es: {{ total }}</p>
+  </div>
+  <br>
+  <hr>
+  <!-- texto creado con snippet -->
+  <h1>Hola con snippet</h1>
+  <img src="" alt="">
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hola mundo con Vue.js!'
+      }
+    })
+  </script>
+  <script>
+    var app2 = new Vue({
+      el: '#app-2',
+      data: {
+        message: 'Usted cargó esta página el ' + new Date().toLocaleString()
+      }
+    })
+  </script>
+  <script>
+    // suma de dos numeros
+    var app3 = new Vue({
+      el: '#app-3',
+      data: {
+        firstNumber: 5,
+        secondNumber: 10
+      },
+      computed: {
+        total: function () {
+          return this.firstNumber + this.secondNumber
+        }
+      }
+    })
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>computed</title>
+  <style>
+    .femenino {
+      color: pink;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .masculino {
+      color: blue;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 25px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <main id='app'>
+    <h2>Escribe tu edad</h2>
+    <input type="number" v-model="edad">
+    <div v-html="rangoEdad"></div><br>
+    <label :class="genero">{{concatenacion}}</label><br>
+    <input type="radio" v-model="gen" value="f">Femenino
+    <input type="radio" v-model="gen" value="m">Masculino
+
+
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        edad: 0,
+        nombre: 'Juan',
+        apellidoP: 'Perez',
+        apellidoM: 'Lopez',
+        gen: 'f'
+
+
+      },
+      computed: {
+        rangoEdad: function () {
+          // return this.edad > 0 ? this.edad < 18 ? 'Menor de edad' : this.edad < 60 ? 'Adulto' : 'Adulto mayor' : '' 
+          if (this.edad >= 18) {
+            return '<h1>Eres mayor de edad</h1>';
+          } else {
+            return '<h1>Eres menor de edad</h1>';
+          }
+        },
+        concatenacion: function () {
+          return this.nombre + ' ' + this.apellidoP + ' ' + this.apellidoM;
+        },
+        genero: function () {
+          return this.gen == 'f' ? 'femenino' : 'masculino';
+        }
+
+      }
+    })
+
+  </script>
+
+</body>
+
+</html>

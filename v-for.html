@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for</title>
+</head>
+<body>
+  <main id='app'>
+    <h1>Frutas favoritas</h1>
+    <ul>
+      <ol v-for="dato in datos">{{dato.id}} - {{dato.valor}}</ol>
+    </ul>
+    <br>
+    <select name="" id="" v-model="datos.id">
+      <option v-for="dato in datos" :value="dato.id">{{dato.valor}}</option>
+    </select>
+    <br>
+    <input type="text" :value="datos.id">
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        datos: [
+        {valor:'Uvas', id:1},
+        {valor:'Manzanas', id:2},
+        {valor:'Peras', id:3},
+        {valor:'Naranjas', id:4},
+        {valor:'Mangos', id:5},
+        {valor:'Sandias', id:6}
+      ]
+      },
+    })
+  </script>
+</body>
+</html>
