@@ -31,6 +31,10 @@
     <label :class="genero">{{concatenacion}}</label><br>
     <input type="radio" v-model="gen" value="f">Femenino
     <input type="radio" v-model="gen" value="m">Masculino
+    <br>
+    <p :style="estilo">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet sed ea sapiente, eligendi exercitationem cumque in autem modi ex saepe porro blanditiis, aut minima maxime illum soluta maiores. Cupiditate, repudiandae. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, ipsum at. Repellendus illum eius voluptate neque et a est pariatur reiciendis! Quae neque optio repellendus aperiam, quis sint in nulla.
+    </p>
 
 
   </main>
@@ -61,6 +65,16 @@
         },
         genero: function () {
           return this.gen == 'f' ? 'femenino' : 'masculino';
+        },
+        estilo: function () {
+          // width: 300px; font - size: 20px; color: brown; text - align: justify;
+          return {
+            width: '300px',
+            fontSize: '20px',
+            color: 'brown',
+            textAlign: 'justify'
+          }
+          
         }
 
       }
