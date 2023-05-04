@@ -18,6 +18,11 @@
     <br>
     <label for="">{{res}}</label>
     <button v-on:click="operacion">Calcular</button>
+    <br>
+    <br>
+    <button v-on:click="saludo('Hola Develop')">Saludar</button> <br>
+    <input type="text" @keyup.enter="saludo(dato)" v-model="dato">
+    <!-- enter,tab,delete,esc,space,up,down,left,right -->
 
 
   </main>
@@ -29,7 +34,8 @@
         v1:0,
         v2:0,
         res:0,
-        ope:'suma'
+        ope:'suma',
+        dato:''
       },
       methods: {
         operacion: function(){
@@ -59,6 +65,13 @@
               this.res = parseInt(this.v1) / parseInt(this.v2);
               break;
           }
+        },
+        saludo: function(mensaje){
+            alert(mensaje)
+            // if(event){
+            //   alert("evento ejecutado")
+            // }
+
         }
       },
     })
