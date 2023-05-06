@@ -21,8 +21,19 @@
     <br>
     <br>
     <button v-on:click="saludo('Hola Develop')">Saludar</button> <br>
-    <input type="text" @keyup.enter="saludo(dato)" v-model="dato">
+    <input type="text" @keyup.enter="saludo(dato)" v-model="dato" placeholder="Evento con tecla">
     <!-- enter,tab,delete,esc,space,up,down,left,right -->
+    <br>
+    <hr>
+    <h1>TodoList</h1>
+    <form v-on:submit.prevent="agregarPersonas">
+      <input type="text" v-model="persona"> <br>
+      <input type="submit" value="agregar">
+    </form>
+    <br>
+    <ul>
+      <li v-for="per in personas">{{per}}</li>
+    </ul>
 
 
   </main>
@@ -35,7 +46,10 @@
         v2:0,
         res:0,
         ope:'suma',
-        dato:''
+        dato:'',
+        personas:['juan','pedro','maria','jose'],
+        persona:''
+
       },
       methods: {
         operacion: function(){
@@ -72,6 +86,12 @@
             //   alert("evento ejecutado")
             // }
 
+        },
+        agregarPersonas: function(){
+          if(this.persona != ''){
+            this.personas.push(this.persona)
+            this.persona = ''
+        }
         }
       },
     })
