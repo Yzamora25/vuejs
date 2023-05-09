@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <main id='app'>
+    <!-- <saludo></saludo> -->
+    <!-- <encabezado titulo='encabezado'></encabezado> -->
+    <mi-encabezado titulo='Curso' subtitulo='Desarrollo web con vue.js'></mi-encabezado>
+    <mi-encabezado titulo='Otro Curso' subtitulo='Php' :contenido="datos" alineacion="justify"></mi-encabezado>
+    <mi-tabla :lista="personas"></mi-tabla>
+
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script>
+
+    // componenetes globales
+
+    // Vue.component('saludo',{
+    //   props:['saludo'],
+    //   template:`
+    //     <div>
+    //       <h1>{{saludo}}</h1>
+    //       <h3>hola</h3>
+    //     </div>
+    //   `,
+    // })
+
+    // componente para encabezado de la pagina
+    // Vue.component('encabezado',{
+    //   props:['titulo'],
+    //   template:`
+    //     <header>
+    //       <h1>{{titulo}}</h1>
+    //     </header>
+    //   `,
+    // })
+
+    Vue.component('mi-encabezado',{
+      props:['titulo', 'subtitulo', 'contenido', 'alineacion'],
+      template:`
+        <div style="with:300px;">
+          <h1>{{titulo}}</h1>
+          <h3>{{subtitulo}}</h3>
+          <p :align="alineacion">{{contenido}}</p>
+        </div>
+      `,
+    })
+
+    Vue.component('mi-tabla', {
+        props: ['lista'],
+        template: `
+        <div style="with:300px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="persona in lista">
+                <td>{{persona.nombre}}</td>
+                <td>{{persona.edad}}</td>
+              </tr>
+            </tbody>
+          </table>
+         
+        </div>
+      `,
+      })
+
+
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        datos: 'Aute aute ad adipisicing quis anim aliqua laborum anim fugiat anim. Fugiat et ea est sunt eu aute dolore proident consequat aute. Enim nisi anim reprehenderit ex nisi officia ipsum ad officia. Anim nisi voluptate quis mollit voluptate mollit qui anim commodo. Aliquip adipisicing ullamco enim enim labore ea ipsum ad aliquip enim nisi esse fugiat. Mollit anim officia adipisicing laboris.',
+        personas:[
+          {nombre:'Juan', edad:20},
+          {nombre:'Pedro', edad:30},
+          {nombre:'Maria', edad:40},
+          {nombre:'Jose', edad:50},]
+      },
+    })
+  </script>
+  
+</body>
+</html>
