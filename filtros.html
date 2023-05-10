@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <main id='app'>
+<input v-model="buscar" type="text" placeholder="Buscador" size="50" />
+<br>
+    
+    <table>
+      <tr>
+        <th v-for="item in campos">{{item.toUpperCase()}}</th>
+      </tr>
+      
+      <tr v-for="item in datosFiltrados">
+        <td>{{item.name.toUpperCase()}}</td>
+        <td>{{item.email.toLowerCase()}}</td>
+        <td>{{item.address.city}}</td>
+        <td>Lat: {{item.address.geo.lat}} - Lng: {{item.address.geo.lng}}</td>
+      </tr>
+
+    </table>
+    <br>
+    
+
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>\
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.3/vue-resource.min.js"
+    integrity="sha512-SzBVU+C0eJl+4BIg29X72SYgYNUI2bNVVUFfG9eg1g2jOMvBy3w2movesVS0u+IslOgFyRxuVrMrSHcnLPLN+Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    const url = 'https://jsonplaceholder.typicode.com/users'
+    var app = new Vue({
+      el: '#app',
+      data: {
+        datos: [],
+        campos:['name','email','city','location'],
+        buscar:''
+      },
+      methods: {
+        usuarios() {
+          this.$http.get(url)
+            .then(function (response) {
+              this.datos = response.body
+            })
+
+        }
+      },
+      created() {
+        this.usuarios()
+      },
+      computed:{
+        datosFiltrados(){
+          return this.datos.filter((filtro)=>{
+            return filtro.name.toUpperCase().match(this.buscar.toUpperCase()) || filtro.email.toUpperCase().match(this.buscar.toUpperCase()) || filtro.address.city.toUpperCase().match(this.buscar.toUpperCase()) || filtro.address.geo.lat.toUpperCase().match(this.buscar.toUpperCase()) || filtro.address.geo.lng.toUpperCase().match(this.buscar.toUpperCase())
+          })
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>
